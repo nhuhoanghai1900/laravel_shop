@@ -1,0 +1,90 @@
+.header-container {
+    background-color: #343a40;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+}
+
+.dropdown {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.dropdown a, p {
+    color: white;
+    text-decoration: none;
+}
+
+.header-start img {
+    width: 7vw;
+    max-height: 6vh;
+    height: auto;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.header-center {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-center .dropdown-list {
+    position: relative;
+}
+
+.dropdown-list .dropdown-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-text .overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+}
+
+.dropdown-list .dropdown-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    visibility: visible;
+    top: 200%;
+    left: 0;
+    white-space: nowrap;
+    background-color: black;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 8px 15px;
+}
+
+.dropdown-list:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.dropdown-content a:hover {
+    color: #343a40 !important;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+}
+
+.dropdown a:hover {
+    color: red;
+}

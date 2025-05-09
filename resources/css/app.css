@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
+@import './header.css';
+@import './home.css';
+@import './products.css';
+@import './search.css';
+
+:root {
+    --font-sans: 'Chakra Petch', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: #f1f0ec;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
