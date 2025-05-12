@@ -16,8 +16,10 @@
         @foreach ($products as $pro)
             <div class="products-item">
                 <a href="#"><img src='{{ $pro->img }}' alt="{{ $pro->slug }}"></a>
-                <span><a href="#">{{ number_format($pro->price, 0, ',', '.') }} đ</a></span>
-                <small class="">{{ $pro->name }}</small>
+                <div class="item-des">
+                    <small>{{ $pro->name }}</small>
+                    <strong><a class="text-dark" href="#">{{ number_format($pro->price, 0, ',', '.') }} đ</a></strong>
+                </div>
             </div>
         @endforeach
     </section>

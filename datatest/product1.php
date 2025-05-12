@@ -70,19 +70,3 @@ $products = [
 'category_id' => 1
 ]
 ];
-
-foreach ($products as $product) {
-// Tạo slug từ tên sản phẩm
-$slug = Str::slug($product['name']);
-// Kiểm tra xem slug đã tồn tại chưa
-$original_slug = $slug;
-$count = 1;
-// Thêm số đếm vào slug nếu cần thiết để đảm bảo tính duy nhất
-while (Product::where('slug', $slug)->exists()) {
-$slug = "{$original_slug}-{$count}";
-$count++;
-}
-$product['slug'] = $slug;
-
-Product::create($product);
-}

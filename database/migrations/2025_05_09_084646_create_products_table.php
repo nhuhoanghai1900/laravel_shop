@@ -15,10 +15,11 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('img');
-            $table->string('des');
+            $table->string('color'); // Màu sắc
+            $table->string('size');  // Kích thước
+            $table->string('sku')->nullable(); // Mã sản phẩm
             $table->unsignedInteger('price');
             $table->unsignedBigInteger('category_id');
-            // Tạo foreign key để liên kết category_id với bảng categories
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });

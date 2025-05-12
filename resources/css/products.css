@@ -16,32 +16,12 @@
 }
 
 .section-products img {
-    /* min-width: 420px; */
     width: 100%;
     min-height: 420px;
     height: auto;
+    transition: transform 0.3s ease-in-out;
 }
 
-.products-item {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.products-item span {
-    position: absolute;
-    left: 0;
-    bottom: 3%;
-}
-
-.products-item small {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    margin-top: 10px;
-}
-
-.products-item span a {
-    width: 100%;
-    padding: 10px 30px;
-    background-color: #343a40;
+.section-products img:hover {
+    transform: scale(0.9);
 }
