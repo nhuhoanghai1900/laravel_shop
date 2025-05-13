@@ -16,7 +16,6 @@ class ProductController extends Controller
             return response()->json(['error' => 'Category ID is required'], 400);
         }
 
-        // eloquent relationship
         $category = Category::find($categoryId);
         if (!$category) {
             return response()->json(['error' => 'Category not found'], 404);
@@ -24,6 +23,12 @@ class ProductController extends Controller
 
         $categoryName = $category->name;
         $products = $category->products;
-        return view('shop.index', compact('products', 'categoryName'));
+        return view('shop.index', compact('products', 'categoryName', 'slug'));
+    }
+
+    public function showProduct($categoryslug, $productSlug)
+    {
+        $product = Product::with('category')->where('slug', $productSlug)->firstOrFail();
+        return view('shop.details', compact('product'));
     }
 }

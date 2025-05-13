@@ -15,7 +15,7 @@
     <section class="container mx-auto section-products">
         @foreach ($products as $pro)
             <div class="products-item">
-                <a href="#"><img src='{{ $pro->img }}' alt="{{ $pro->slug }}"></a>
+                <a href="/shop/{{ $slug }}/{{ $pro->slug }}"><img src='{{ $pro->img }}' alt="{{ $pro->slug }}"></a>
                 <div class="item-des">
                     <small>{{ $pro->name }}</small>
                     <strong><a class="text-dark" href="#">{{ number_format($pro->price, 0, ',', '.') }} đ</a></strong>
