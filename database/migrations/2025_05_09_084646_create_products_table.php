@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('img');
-            $table->string('color'); // Màu sắc
-            $table->string('size');  // Kích thước
+            $table->string('color')->default('Đen/Trắng/Xanh'); // Màu sắc
+            $table->string('size')->default('S/M/L/XL');  // Kích thước
             $table->string('sku')->nullable(); // Mã sản phẩm
             $table->unsignedInteger('price');
             $table->unsignedBigInteger('category_id');
