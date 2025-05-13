@@ -15,9 +15,9 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('img');
-            $table->string('color')->default('Đen/Trắng/Xanh'); // Màu sắc
-            $table->string('size')->default('S/M/L/XL');  // Kích thước
-            $table->string('sku')->nullable(); // Mã sản phẩm
+            $table->string('color')->default('Đen/Trắng/Xanh');
+            $table->string('size')->default('S/M/L/XL');
+            $table->string('sku')->nullable()->unique(); // Mã sản phẩm
             $table->unsignedInteger('price');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
