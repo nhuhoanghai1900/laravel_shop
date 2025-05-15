@@ -1,0 +1,10 @@
+.header-cart {
+    background-color: #6c757d;
+    padding: 10px 100px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.header-cart:hover a {
+    color: red;
+}

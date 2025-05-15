@@ -40,7 +40,7 @@
         <div class="header-icon d-flex gap-3">
             <i class="bi bi-newspaper"></i>
             <i class="bi bi-person"></i>
-            <i class="bi bi-cart2"></i>
+            <a href="{{ route('cart.show') }}"><i class="bi bi-cart2"></i></a>
         </div>
     </div>
 </div>

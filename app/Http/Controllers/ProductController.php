@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
-use function Laravel\Prompts\error;
 
 class ProductController extends Controller
 {
@@ -28,7 +27,8 @@ class ProductController extends Controller
 
     public function showProduct($categoryslug, $productSlug)
     {
-        $product = Product::with('category')->where('slug', $productSlug)->firstOrFail();
+        $product = Product::with('category')->where('slug', $productSlug)->first();
+        $product = Product::with('description')->find($product->id);
         return view('shop.details', compact('product'));
     }
 }

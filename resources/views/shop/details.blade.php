@@ -15,13 +15,60 @@
         </div>
     </div>
 
-    <section class="container mx-auto product-details">
-        <div class="product-img">
+    <form action="{{ route('cart.add') }}" method="POST">
+        @csrf
+        <section class="container mx-auto product-details">
             <img src="{{ $product->img }}" alt="{{ $product->slug }}">
-        </div>
-        <div class="product-des">
-            <small>{{ $product->name }}</small>
-            <h5>{{ number_format($product->price, 0, ',', '.' )}}đ</h5>
-        </div>
-    </section>
+            <div class="product-des">
+                <h5 class="fw-bold">{{ $product->name }}</h5>
+                <h5 class="fs-6 text-danger">{{ number_format($product->price, 0, ',', '.')}} đ</h5>
+                <p class="text-dark fst-italic">
+                    Giá Hời áp dụng đến hết ngày 31/07/2025</p>
+                <p class="text-dark fw-bold">Màu sắc: {{ $product->color }}</p>
+                <p class="text-dark fw-bold">Size: {{ $product->size }}</p>
+                <div class="mb-2">
+                    <select name="color" class="form-select" aria-label="Default select example" required>
+                        <option value="">-- Chọn màu --</option>
+                        <option value="Đỏ">Đỏ</option>
+                        <option value="Xanh">Xanh</option>
+                        <option value="Xám">Xám</option>
+                        <option value="Đen">Đen</option>
+                        <option value="Trắng">Trắng</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <select name="size" class="form-select" aria-label="Default select example" required>
+                        <option value="">-- Chọn size --</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+                <div class="product-action mb-3">
+                    <label for="quantity">Số lượng</label>
+                    <select id="quantity" name="quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <button type="submit" class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                </div>
+                <small class="text-dark fst-italic">Mã sản phẩm: {{ $product->sku }}</small> <br />
+                <input type="hidden" name="id" value="{{ $product->id }}">
+                <p class="full-description text-dark text-justify mt-2">
+                    {!! nl2br(e($product->description->content)) !!}
+                </p>
+                <details class="summary-description">
+                    <summary>Xem mô tả sản phẩm</summary>
+                    <p class="text-dark text-justify mt-2">
+                        {!! nl2br(e($product->description->content)) !!}
+                    </p>
+                </details>
+            </div>
+        </section>
+    </form>
+
 @endsection
