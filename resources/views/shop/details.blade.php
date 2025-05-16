@@ -14,9 +14,7 @@
             <input type="text" class="input-search" placeholder="Lựa chọn trong tay bạn...">
         </div>
     </div>
-
-    <form action="{{ route('cart.add') }}" method="POST">
-        @csrf
+    <form id="addFormCart">
         <section class="container mx-auto product-details">
             <img src="{{ $product->img }}" alt="{{ $product->slug }}">
             <div class="product-des">
@@ -24,8 +22,6 @@
                 <h5 class="fs-6 text-danger">{{ number_format($product->price, 0, ',', '.')}} đ</h5>
                 <p class="text-dark fst-italic">
                     Giá Hời áp dụng đến hết ngày 31/07/2025</p>
-                <p class="text-dark fw-bold">Màu sắc: {{ $product->color }}</p>
-                <p class="text-dark fw-bold">Size: {{ $product->size }}</p>
                 <div class="mb-2">
                     <select name="color" class="form-select" aria-label="Default select example" required>
                         <option value="">-- Chọn màu --</option>
@@ -52,12 +48,10 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5">5</option>
                     </select>
-                    <button type="submit" class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+                    <button type="submit" class="add-to-cart" data-id='{{ $product->id }}'>THÊM VÀO GIỎ HÀNG</button>
                 </div>
                 <small class="text-dark fst-italic">Mã sản phẩm: {{ $product->sku }}</small> <br />
-                <input type="hidden" name="id" value="{{ $product->id }}">
                 <p class="full-description text-dark text-justify mt-2">
                     {!! nl2br(e($product->description->content)) !!}
                 </p>
@@ -70,5 +64,4 @@
             </div>
         </section>
     </form>
-
 @endsection

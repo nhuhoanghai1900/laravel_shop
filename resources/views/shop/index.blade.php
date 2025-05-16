@@ -16,7 +16,7 @@
         @foreach ($products as $pro)
             <div class="products-item">
                 <a href="/shop/{{ $slug }}/{{ $pro->slug }}"><img src='{{ $pro->img }}' alt="{{ $pro->slug }}"></a>
-                <div class="item-des">
+                <div class="item-des d-flex flex-column gap-1">
                     <small>{{ $pro->name }}</small>
                     <strong><a class="text-dark" href="#">{{ number_format($pro->price, 0, ',', '.') }} đ</a></strong>
                 </div>

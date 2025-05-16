@@ -14,7 +14,11 @@
             <!-- Cột trái: Chi tiết đơn hàng -->
             <div class="col-lg-7 mb-4">
                 <div class="card">
-                    <div class="card-header"><strong>Chi tiết đơn hàng</strong></div>
+                    <div class="card-header">
+                        <strong>Chi tiết đơn hàng <i class="bi bi-cart4"></i>
+                            <small class="total-cart">({{ $totalQuantity }})</small>
+                        </strong>
+                    </div>
                     <div class="card-body">
                         <!-- Chi tiết sản phẩm 1 -->
                         @forelse ($cart as $sku => $item)
@@ -48,12 +52,14 @@
                         <!-- Phí giao hàng và Tổng cộng -->
                         <div class="d-flex justify-content-between mb-2">
                             <span>Phí giao hàng</span>
-                            <span>30,000đ</span>
+                            <span>Miễn phí</span>
                         </div>
 
                         <div class="d-flex justify-content-between fw-bold fs-5">
                             <span>Tổng cộng</span>
-                            <span>780,000đ</span>
+                            <span class="total-price">
+                                {{ number_format($totalPrice, 0, ",", ".") }} đ
+                            </span>
                         </div>
                     </div>
                 </div>

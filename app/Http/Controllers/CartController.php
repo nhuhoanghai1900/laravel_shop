@@ -3,28 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class CartController extends Controller
 {
     public function showCart()
     {
         $cart = session('cart', []);
-        return view('cart.index', compact('cart'));
+        // Debugbar::info($cart);
+
+        //tổng giá
+        $totalPrice = 0;
+        foreach ($cart as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+        //tổng số lượng
+        $totalQuantity = array_reduce(
+            $cart,
+            fn($numbers, $item) => $numbers += $item['quantity'],
+            0
+        );
+        return view('cart.index', compact('cart', 'totalPrice', 'totalQuantity'));
     }
     public function addCart(Request $request)
     {
         $product = Product::where('id', $request->id)->first();
-
-        if (!$product) {
-            return redirect()->back()->with('error', 'Sản phẩm không tồn tại');
-        }
-
         $cart = session()->get('cart', []);
+
         //tạo biến thể mới
         $variantKey = "{$product->id}-{$request->color}-{$request->size}";
-        //kiểm tra variant của sản phẩm tồn tại
         if (isset($cart[$variantKey])) {
             $cart[$variantKey]['quantity']++;
         } else {
@@ -39,7 +47,24 @@ class CartController extends Controller
             ];
         }
         session(['cart' => $cart]); // lưu session
-        return redirect()->route('cart.show')->with('success', 'Đã thêm vào giỏ hàng');
+        return response()->json([
+            'success' => true,
+            'message' => 'Đã thêm sản phẩm của bạn vào giỏ hàng'
+        ]);
+    }
+
+    public function updateCart()
+    {
+        $cart = session()->get('cart', []);
+        $totalPrice = 0;
+        foreach ($cart as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Cập nhật thành công tổng tiền',
+            'totalPrice' => $totalPrice
+        ]);
     }
 
     public function removeFromCart(Request $request)
@@ -51,10 +76,17 @@ class CartController extends Controller
             unset($cart[$variantKey]);
             session()->put('cart', $cart);
         }
+        //tổng số lượng
+        $totalQuantity = array_reduce(
+            $cart,
+            fn($numbers, $item) => $numbers += $item['quantity'],
+            0
+        );
         return response()->json([
             'success' => true,
             'message' => 'Xóa sản phẩm thành công',
             'cartCount' => count($cart),
+            'totalQuantity' => $totalQuantity
         ]);
     }
 }
