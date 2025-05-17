@@ -20,44 +20,55 @@
                         </strong>
                     </div>
                     <div class="card-body">
-                        <!-- Chi tiết sản phẩm 1 -->
                         @foreach ($cart as $item)
-                            <div
-                                class="cart-item d-flex justify-content-between align-items-center mb-3 p-3 border rounded shadow-sm">
-                                <!-- Sản phẩm -->
+                            <div class="cart-item d-flex justify-content-between align-items-center mb-3 p-4 border rounded">
                                 <div class="d-flex">
-                                    <img src="{{ $item['img'] }}" alt="{{ $item['name'] }}" class="me-4 img-fluid"
+                                    <img src="{{ $item['img'] }}" alt="{{ $item['name'] }}" class="me-4 img-fluid rounded"
                                         style="width: 110px; height: auto; object-fit: cover;" />
                                     <div>
-                                        <div class="fw-bold fs-6">{{ $item['name'] }}</div>
-                                        <div class="text-muted mb-2">Số lượng: {{ $item['quantity'] }}</div>
-                                        <div class="text-muted mb-2">Màu sắc: {{ $item['color'] }}</div>
-                                        <div class="text-muted mb-3">Kích thước: {{ $item['size'] }}</div>
-                                        <div class="fs-6">
-                                            Giá: <span class="text-danger">{{ number_format($item['price'], 0, ',', '.') }}
-                                                đ</span>
+                                        <div class="fw-bold fs-5 mb-2">{{ $item['name'] }}</div>
+                                        <div class="text-muted">Số lượng: {{ $item['quantity'] }}</div>
+                                        <div class="text-muted">Màu sắc: {{ $item['color'] }}</div>
+                                        <div class="text-muted mb-2">Kích thước: {{ $item['size'] }}</div>
+                                        <!-- Giá và Tổng giá -->
+                                        <div class="fs-6 d-flex align-items-center justify-content-between gap-3">
+                                            <div>
+                                                Giá:
+                                                <span class="text-danger fw-semibold">
+                                                    {{ number_format($item['price'], 0, ',', '.') }} đ
+                                                </span>
+                                            </div>
+                                            <div>
+                                                Tổng:
+                                                <span class="text-success fw-semibold">
+                                                    {{ number_format($item['subtotal'], 0, ',', '.') }} đ
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-danger px-3 py-2 btn-delete-cart"
+                                                    data-id="{{ $item['id'] }}" data-color="{{ $item['color'] }}"
+                                                    data-size="{{ $item['size'] }}">
+                                                    <i class="bi bi-trash"></i> Xóa
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <button class="btn btn-danger btn-sm btn-delete-cart" data-id="{{ $item['id'] }}"
-                                        data-color="{{ $item['color'] }}" data-size="{{ $item['size'] }}">Xóa</button>
-                                </div>
                             </div>
+
                         @endforeach
                         <p class="text-danger empty-text-cart" style="{{ empty($cart) ? '' : 'display: none' }}">
                             <i class="bi bi-box-seam"></i> Không có sản phẩm nào trong giỏ hàng.
                         </p>
-
                         <hr>
                         <!-- Phí giao hàng và Tổng cộng -->
                         <div class="d-flex justify-content-between mb-2">
                             <span>Phí giao hàng</span>
                             <span>Miễn phí</span>
                         </div>
-
+                        <hr>
                         <div class="d-flex justify-content-between fw-bold fs-5">
-                            <span>Tổng cộng</span>
+                            <span>Tổng thanh toán</span>
                             <span class="total-price">
                                 {{ number_format($totalPrice, 0, ",", ".") }} đ
                             </span>
