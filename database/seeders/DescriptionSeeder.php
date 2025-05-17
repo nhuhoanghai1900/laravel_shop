@@ -76,6 +76,18 @@ DESS,
 6. Thuộc Bộ Sưu Tập: Bộ sưu tập Beginner, mang thông điệp đồ thể thao cho những người mới bắt đầu. Đây là một tập hợp các sản phẩm thiết kế đơn giản, tiện lợi và chất lượng, giúp bạn thoải mái và tự tin trong mọi hoạt động thể thao.
 7. Các tên thường gọi hoặc tìm kiếm về sản phẩm này: Quần Short lưng thun, Quần Short trên gối, Quần Short thể thao, Quần 5 inch.
 DESS,
+
+            <<<DESS
+1. Kiểu sản phẩm: Nón lưỡi trai
+2. Ưu điểm:
+- Chất liệu dù giúp nón không chỉ nhẹ mà còn bền, chống thấm nước tốt, giúp bảo vệ bạn khỏi mưa và nắng.
+- Thiết kế hiện đại, bắt kịp xu hướng giúp bạn luôn nổi bật và tự tin khi ra ngoài.
+3. Chất liệu: Vải dù 100% Polyester
+4. Kỹ thuật: Quy trình cắt và may đạt tiêu chuẩn, với đường may chắc chắn và đều đặn. Các chi tiết như viền nón, lưỡi trai và dây điều chỉnh được may tỉ mỉ.
+5. Phù hợp với ai: Phù hợp cho mọi lứa tuổi, mọi style.
+6. Thuộc Bộ Sưu Tập nào: Bộ sưu tập #Y2010 có nhiều sản phẩm từ đơn giản đến phức tạp, phù hợp với phong cách thể thao, năng động, thời trang và cá tính.
+7. Các tên thường gọi hoặc tìm kiếm về sản phẩm này: Nón thời trang, Nón đơn giản, Nón Lưỡi Trai #Y2010, Nón Lưỡi Trai Nam,..
+DESS,
         ];
         foreach ($contents as $content) {
             Description::firstOrCreate([

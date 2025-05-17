@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -593,6 +592,76 @@ kéo, thêu 2D',
                 'price' => rand(190000, 490000),
                 'category_id' => 6,
                 'description_id' => 6
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Kaki',
+                'img' => '/img/non/non-1.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Kaki Seventy Seven 47',
+                'img' => '/img/non/non-2.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Kaki Naruto 29',
+                'img' => '/img/non/non-3.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Bucket Nhung Corduroy Seventy Seven 48',
+                'img' => '/img/non/non-4.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Kaki No Style M140',
+                'img' => '/img/non/non-5.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Phối Lưới Non Branded 11',
+                'img' => '/img/non/non-6.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Kaki Seventy Seven 47',
+                'img' => '/img/non/non-7.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Kaki No Style M142',
+                'img' => '/img/non/non-8.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Dù Lưỡi Trai Nhẹ Chống Nước',
+                'img' => '/img/non/non-9.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
+            ],
+            [
+                'name' => 'Nón Lưỡi Trai Kaki No Style M140',
+                'img' => '/img/non/non-10.jpg',
+                'price' => rand(120000, 290000),
+                'category_id' => 7,
+                'description_id' => 7
             ]
         ];
         foreach ($products as $product) {
@@ -606,9 +675,9 @@ kéo, thêu 2D',
             $product['slug'] = $slug;
             $product['sku'] = '#' . str_pad(rand(1, 9999999), 7, '0', STR_PAD_LEFT);
             Product::firstOrCreate(
-                // [
-                //     'sku' => $product['sku'],
-                // ],
+                [
+                    'sku' => $product['sku'],
+                ],
                 $product
             );
         }

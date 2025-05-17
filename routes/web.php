@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 
@@ -13,4 +12,4 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->n
 Route::get('/shop/{categoryslug}/{productSlug}', [ProductController::class, 'showProduct']);
 Route::get('/shop/{slug}', [ProductController::class, 'getByCategory']);
 
-Route::get('/', [CategoryController::class, 'index']);
+Route::get('/', fn() => view('home'));

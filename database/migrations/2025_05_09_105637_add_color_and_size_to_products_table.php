@@ -11,12 +11,6 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            if (!Schema::hasColumn('products', 'color')) {
-                $table->string('color', 50)->after('des'); // Màu sắc
-            }
-            if (!Schema::hasColumn('products', 'size')) {
-                $table->string('size', 10)->after('color');  // Kích thước
-            }
             if (!Schema::hasColumn('products', 'sku')) {
                 $table->string('sku', 30)->nullable()->after('size'); // Mã sản phẩm
             }
@@ -26,7 +20,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['color', 'size', 'sku']);
+            $table->dropColumn(['sku']);
         });
     }
 };

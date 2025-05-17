@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 class CategorySeeder extends Seeder
 {
     /**
@@ -12,46 +13,65 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('products')->truncate();
         $categories = [
             [
                 'name' => 'Áo Thun',
-                'slug' => 'ao-thun',
                 'img' => '/img/Categories/category-1.jpg',
                 'des' => 'CHỈ TỪ 70K',
+                'type' => 'quan-ao'
             ],
             [
                 'name' => 'Áo Khoác',
-                'slug' => 'ao-khoac',
                 'img' => '/img/Categories/category-2.jpg',
                 'des' => 'MỀM MỊN MÁT',
+                'type' => 'quan-ao'
             ],
             [
                 'name' => 'Áo Thun Cổ Polo Tay Ngắn',
-                'slug' => 'ao-thun-co-polo-tay-ngan',
                 'img' => '/img/Categories/category-3.jpg',
                 'des' => 'CÔNG NGHỆ CAO',
+                'type' => 'quan-ao'
             ],
             [
                 'name' => 'Áo Sơ Mi',
-                'slug' => 'ao-so-mi',
                 'img' => '/img/Categories/category-4.jpg',
                 'des' => 'LÀ SƯỚNG',
+                'type' => 'quan-ao'
             ],
             [
                 'name' => 'Quần Jeans Slim Fit',
-                'slug' => 'quan-jeans',
                 'img' => '/img/Categories/category-5.jpg',
                 'des' => 'ĐA DẠNG SIZE',
+                'type' => 'quan-ao'
             ],
             [
                 'name' => 'Quần Short',
-                'slug' => 'quan-short',
                 'img' => '/img/Categories/category-6.jpg',
                 'des' => 'CÁ NHÂN HÓA',
+                'type' => 'quan-ao'
+            ],
+            [
+                'name' => 'Nón',
+                'type' => 'phu-kien'
+            ],
+            [
+                'name' => 'Ví',
+                'type' => 'phu-kien'
+            ],
+            [
+                'name' => 'Giây nịt',
+                'type' => 'phu-kien'
+            ],
+            [
+                'name' => 'Giày',
+                'type' => 'phu-kien'
             ],
         ];
 
         foreach ($categories as $category) {
+            $slug = Str::slug($category['name']);
+            $category['slug'] = $slug;
             Category::firstOrCreate(
                 ['slug' => $category['slug']],
                 $category

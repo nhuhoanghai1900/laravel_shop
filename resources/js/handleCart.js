@@ -1,4 +1,4 @@
-import { showToast, showToastDanger } from './toastify.js'
+import { showToast } from './toastify.js'
 
 //xử lý add cart
 const formAddCart = document.querySelector('#addFormCart')
@@ -6,10 +6,8 @@ if (formAddCart) {
     formAddCart.addEventListener('submit', async (e) => {
         e.preventDefault()
         const formData = new FormData(formAddCart)
-        // console.table(Object.fromEntries(formData.entries()));
         const cartId = document.querySelector('.add-to-cart').getAttribute('data-id')
         formData.append('id', cartId)
-
         try {
             const res = await fetch('/cart/add', {
                 method: 'POST',
@@ -24,13 +22,13 @@ if (formAddCart) {
             }
             const result = await res.json()
             showToast(result.message)
+            document.querySelector('.cart-header').textContent = `(${result.totalQuantity})`
         } catch (error) {
             console.log(error);
             showToast('Có lỗi xảy ra, vui lòng thử lại!');
         }
     })
 }
-
 
 //xử lý reemove cart
 document.querySelectorAll('.btn-delete-cart').forEach(btn => {
@@ -52,20 +50,20 @@ document.querySelectorAll('.btn-delete-cart').forEach(btn => {
             showToast(data.message)
             btn.closest('.cart-item').remove()
             document.querySelector('.total-cart').textContent = `(${data.totalQuantity})`
-
-            const totalPrice = await fetch('/cart/update', {
-                method: 'PUT',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    'Accept': 'application/json'
-                }
-            })
-            if (totalPrice.ok) {
-                const data = await totalPrice.json()
-                document.querySelector('.total-price').textContent = data.totalPrice.toLocaleString('vi-VN') + 'đ'
+            document.querySelector('.cart-header').textContent = `(${data.totalQuantity})`
+            document.querySelector('.total-price').textContent = data.totalPrice.toLocaleString('vi-VN') + 'đ'
+            if(data.totalQuantity === 0) {
+                document.querySelector('.empty-text-cart').style.display = 'block'
             }
         } catch (error) {
             console.error(error);
         }
     })
 })
+
+// update UI cart header
+const headerCart = document.querySelector('.cart-header')
+if (headerCart) {
+    const count = headerCart.dataset.cartCount
+    headerCart.textContent = `(${count})`
+}

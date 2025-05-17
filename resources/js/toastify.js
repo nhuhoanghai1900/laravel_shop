@@ -4,8 +4,8 @@ export const showToast = (message) => {
     Toastify({
         text: message,
         duration: 3000,
-        gravity: "bottom",
-        position: "left",
+        gravity: "top",
+        position: "right",
         style: {
             marginTop: "50px",
             marginRight: "20px",
@@ -26,8 +26,8 @@ export const showToastDanger = (message) => {
     Toastify({
         text: message,
         duration: 3000,
-        gravity: "bottom",
-        position: "left",
+        gravity: "top",
+        position: "right",
         style: {
             marginTop: "50px",
             marginRight: "20px",

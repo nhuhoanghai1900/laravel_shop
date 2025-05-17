@@ -2,7 +2,7 @@
 
 @section('contain')
 
-    <div class="header-cart fw-bold">
+    <div class="header-cart">
         <i class="bi bi-house-fill"></i>
         <a href="/">Trang Chủ</a> / Thông tin giỏ hàng của bạn.
     </div>
@@ -21,12 +21,12 @@
                     </div>
                     <div class="card-body">
                         <!-- Chi tiết sản phẩm 1 -->
-                        @forelse ($cart as $sku => $item)
+                        @foreach ($cart as $item)
                             <div
                                 class="cart-item d-flex justify-content-between align-items-center mb-3 p-3 border rounded shadow-sm">
                                 <!-- Sản phẩm -->
                                 <div class="d-flex">
-                                    <img src="{{ asset($item['img']) }}" alt="{{ $item['name'] }}" class="me-4 img-fluid"
+                                    <img src="{{ $item['img'] }}" alt="{{ $item['name'] }}" class="me-4 img-fluid"
                                         style="width: 110px; height: auto; object-fit: cover;" />
                                     <div>
                                         <div class="fw-bold fs-6">{{ $item['name'] }}</div>
@@ -44,9 +44,10 @@
                                         data-color="{{ $item['color'] }}" data-size="{{ $item['size'] }}">Xóa</button>
                                 </div>
                             </div>
-                        @empty
-                            <p class="text-danger"><i class="bi bi-box-seam"></i> Không có sản phẩm nào trong giỏ hàng.</p>
-                        @endforelse
+                        @endforeach
+                        <p class="text-danger empty-text-cart" style="{{ empty($cart) ? '' : 'display: none' }}">
+                            <i class="bi bi-box-seam"></i> Không có sản phẩm nào trong giỏ hàng.
+                        </p>
 
                         <hr>
                         <!-- Phí giao hàng và Tổng cộng -->
