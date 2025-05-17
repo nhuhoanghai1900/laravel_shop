@@ -61,9 +61,4 @@ document.querySelectorAll('.btn-delete-cart').forEach(btn => {
     })
 })
 
-// update UI cart header
-const headerCart = document.querySelector('.cart-header')
-if (headerCart) {
-    const count = headerCart.dataset.cartCount
-    headerCart.textContent = `(${count})`
-}
+

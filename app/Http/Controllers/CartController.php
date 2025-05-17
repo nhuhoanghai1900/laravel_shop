@@ -11,7 +11,6 @@ class CartController extends Controller
     public function showCart()
     {
         $cart = session('cart', []);
-        Debugbar::log($cart);
         $totalPrice = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
         $totalQuantity = array_sum(array_column($cart, 'quantity'));
         return view('cart.index', compact('cart', 'totalPrice', 'totalQuantity'));

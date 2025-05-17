@@ -34,7 +34,7 @@ export const showToastDanger = (message) => {
             background: "#ff8a66",
             color: "#ffffff",
             borderRadius: "12px",
-            padding: "12px 24px",
+            padding: "16px 60px",
             fontSize: "14px",
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
             borderLeft: "6px solid rgb(255, 238, 0)", // tạo điểm nhấn

@@ -36,13 +36,15 @@
             <i class="bi bi-newspaper"></i>
             <i class="bi bi-person"></i>
             @php
-                $cart = session('cart', []);
                 $totalQuantity = array_sum(array_column($cart, 'quantity'));
             @endphp
             <a href="{{ route('cart.show') }}">
                 <i class="bi bi-cart2"></i>
-                <span class="cart-header badge" data-cart-count='{{ $totalQuantity }}'></span>
+                <span class="cart-header badge">({{ $totalQuantity }})</span>
             </a>
         </div>
     </div>
 </div>
+<script>
+    // window.location.reload()
+</script>

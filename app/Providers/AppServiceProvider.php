@@ -22,9 +22,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $quanAoCategories = Category::where('type', 'quan-ao')->get();
             $phuKienCategories = Category::where('type', 'phu-kien')->get();
+            $cart = session('cart', []);
             $view->with([
                 'quanAoCategories' => $quanAoCategories,
-                'phuKienCategories' => $phuKienCategories
+                'phuKienCategories' => $phuKienCategories,
+                'cart' => $cart
             ]);
         });
     }
