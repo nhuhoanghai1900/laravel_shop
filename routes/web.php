@@ -15,3 +15,5 @@ Route::get('/shop/{categoryslug}/{productSlug}', [ProductController::class, 'sho
 Route::get('/shop/{slug}', [ProductController::class, 'getByCategory']);
 
 Route::get('/', fn() => view('home'));
+
+require base_path('routes/admin.php');

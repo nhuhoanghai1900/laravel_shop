@@ -21,6 +21,8 @@ if (orderPayment) {
                 document.querySelector('.cart-items').innerHTML = ''
                 document.querySelector('.total-price').textContent = '0đ'
                 document.querySelector('.empty-text-cart').style.display = 'block'
+                document.querySelector('.cart-header').textContent = '(0)'
+                document.querySelector('.total-cart').textContent = 0
                 const modalElement = document.getElementById('successModal')
                 const successModal = new bootstrap.Modal(modalElement)
                 successModal.show()
