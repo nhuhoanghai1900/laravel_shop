@@ -5,7 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 
-Route::post('/order', [OrderController::class, 'order'])->name('cart.order')->middleware('throttle:5,1');
+Route::post('/order', [OrderController::class, 'order'])->name('cart.order')->middleware('throttle:2,1');
 
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::post('/cart/add', [CartController::class, 'addCart'])->name('cart.add');

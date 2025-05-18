@@ -47,7 +47,7 @@
                                                 </div>
                                                 <div>
                                                     <button class="btn btn-danger px-3 py-2 btn-delete-cart"
-                                                        data-id="{{ $item['id'] }}" data-color="{{ $item['color'] }}"
+                                                        data-id="{{ $item['product_id'] }}" data-color="{{ $item['color'] }}"
                                                         data-size="{{ $item['size'] }}">
                                                         <i class="bi bi-trash"></i> Xóa
                                                     </button>
@@ -144,5 +144,26 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!-- Modal -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title" id="successModalLabel"><i class="bi bi-check-square-fill"></i>
+                            Thanh toán thành công
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <i class="bi bi-emoji-kiss"></i> Cảm ơn bạn đã mua hàng tại CATMEN <i class="bi bi-balloon-heart"></i> .<br>
+                        <small>Thông tin đơn hàng đã được gửi đi, chúng tôi sẽ sớm liên hệ cho bạn!!!</small>
+                        <div class="modal-footer p-2">
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Hoàn tất</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 @endsection

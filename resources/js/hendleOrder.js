@@ -21,6 +21,9 @@ if (orderPayment) {
                 document.querySelector('.cart-items').innerHTML = ''
                 document.querySelector('.total-price').textContent = '0đ'
                 document.querySelector('.empty-text-cart').style.display = 'block'
+                const modalElement = document.getElementById('successModal')
+                const successModal = new bootstrap.Modal(modalElement)
+                successModal.show()
             }
         } catch (error) {
             console.log(error);

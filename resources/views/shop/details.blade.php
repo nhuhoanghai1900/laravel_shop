@@ -44,10 +44,10 @@
                 <div class="product-action mb-3">
                     <label for="quantity">Số lượng</label>
                     <select id="quantity" name="quantity">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
                     </select>
                     <button type="submit" class="add-to-cart" data-id='{{ $product->id }}'>THÊM VÀO GIỎ HÀNG</button>
                 </div>
