@@ -19,6 +19,7 @@ if (orderPayment) {
             } else {
                 showToast(result.message)
                 document.querySelector('.cart-items').innerHTML = ''
+                document.querySelector('.total-price').textContent = '0đ'
                 document.querySelector('.empty-text-cart').style.display = 'block'
             }
         } catch (error) {
