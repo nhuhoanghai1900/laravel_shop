@@ -4,6 +4,7 @@
 @section('contain')
     <section class="section-banner mx-auto p-4 d-flex justify-content-center">
         <img src="/img/banner.jpg" alt="banner">
+        <h1></h1>
     </section>
     <section class="container mx-auto section-categories mb-5">
         @foreach ($quanAoCategories as $cat)
