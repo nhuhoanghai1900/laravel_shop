@@ -20,7 +20,7 @@ class OrderController extends Controller
                 'phone' => ['required', 'regex:/^0[0-9]{9}$/'],
                 'email' => ['required', 'email', 'max:255', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
                 'address' => ['required', 'string', 'max:255'],
-                'note' => ['nullable', 'string', 'max:1000'],
+                'note' => ['nullable', 'string', 'max:300'],
                 'delivery_to_home' => ['sometimes', 'accepted'],
                 'payment_cod' => ['sometimes', 'accepted'],
             ]);
@@ -49,22 +49,22 @@ class OrderController extends Controller
                 }
                 DB::transaction(function () use ($validated, $request, $cart, $currentHash, &$order) {
                     $order = Order::create([
-                        'name' => $validated['name'],
+                        'name' => strtolower($validated['name']),
+                        'email' => strtolower($validated['email']),
                         'phone' => $validated['phone'],
-                        'email' => $validated['email'],
                         'address' => $validated['address'],
                         'note' => $validated['note'] ?? null,
                         'delivery_to_home' => $request->boolean('delivery_to_home'),
                         'payment_cod' => $request->boolean('payment_cod'),
                     ]);
 
-                    foreach ($cart as $cartItem) {
+                    foreach ($cart as $item) {
                         OrderItem::create([
                             'order_id' => $order->id,
-                            'product_id' => $cartItem['product_id'],
-                            'quantity' => $cartItem['quantity'],
-                            'price_each' => $cartItem['price'],
-                            'total_price' => $cartItem['price'] * $cartItem['quantity'],
+                            'product_id' => $item['product_id'],
+                            'quantity' => $item['quantity'],
+                            'price_each' => $item['price'],
+                            'total_price' => $item['price'] * $item['quantity'],
                         ]);
                     }
                     session([

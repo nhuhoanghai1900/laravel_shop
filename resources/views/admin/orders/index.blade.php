@@ -9,34 +9,32 @@
             <table class="table table-bordered table-hover align-middle text-center mb-0">
                 <thead class="table-dark">
                     <tr>
-                        <th>Mã đơn</th>
-                        <th>Tên khách</th>
+                        <th>Khách hàng</th>
                         <th>SĐT</th>
-                        <th>Giao tận nơi</th>
-                        <th>Thanh toán</th>
-                        <th>Thời gian</th>
+                        <th>Email</th>
+                        <th>Số lần thanh toán</th>
+                        <th>Thanh toán gần nhất</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $item)
+                    @forelse ($orders as $item)
                         <tr>
-                            <td>#{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->phone }}</td>
-                            <td><span class="badge {{ $item->delivery_to_home ? 'bg-success' : 'bg-secondary' }}">
-                                    {{ $item->delivery_to_home ? 'Có' : 'Không' }}
-                                </span></td>
-                            <td><span class="badge {{ $item->payment_cod ? 'bg-success' : 'bg-secondary' }}">
-                                    {{ $item->payment_cod ? 'Có' : 'Không' }}
-                                </span></td>
-                            <td>{{ $item->created_at->format('d/m/Y H:i:s') }}</td>
-                            <td><a href="{{ route('admin.orders.show', $item->id) }}" class="btn btn-sm btn-success">Chi tiết</a></td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->total_orders }}</td>
+                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i:s') }}</td>
+                            <td><a href="{{ route('admin.orders.show', $item->customer_hash) }}" class="btn btn-sm btn-success"
+                                    target="_blank"> Chi tiết</a></td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-muted">Không có đơn hàng nào.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-
         </div>
     </div>
 
