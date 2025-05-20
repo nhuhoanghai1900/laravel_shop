@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -28,6 +29,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    //bảo mật password và remember_token
     protected $hidden = [
         'password',
         'remember_token',

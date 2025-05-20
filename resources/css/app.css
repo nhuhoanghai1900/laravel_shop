@@ -24,3 +24,14 @@ a {
     text-decoration: none;
     color: white;
 }
+
+.error-message {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    min-height: 18px;
+}
+
+input.error {
+    border-color: red;
+}

@@ -1,4 +1,4 @@
-import { showToast } from './toastify.js'
+import { showToast, showToastDanger } from '../toast/toastify.js'
 
 //xử lý add cart
 const formAddCart = document.querySelector('#addFormCart')
@@ -13,19 +13,21 @@ if (formAddCart) {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'X-Requested-With': 'XMLHttpRequest',
                 },
                 body: formData
             })
-            if (!res.ok) {
-               throw new Error('Thêm thất bại')
-            }
             const result = await res.json()
-            showToast(result.message)
-            document.querySelector('.cart-header').textContent = `(${result.totalQuantity})`
+            if (!res.ok) {
+               throw new Error(result.message)
+            } else {
+                showToast(result.message)
+                document.querySelector('.cart-header').textContent = `(${result.totalQuantity})`
+            }
         } catch (error) {
-            console.log(error);
-            showToast('Có lỗi xảy ra, vui lòng thử lại!');
+            console.log(error)
+            showToastDanger(error.message)
         }
     })
 }
@@ -45,18 +47,22 @@ document.querySelectorAll('.btn-delete-cart').forEach(btn => {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             })
-            if (!res.ok) throw new Error('Xóa không thành công')
-            const data = await res.json()
-            showToast(data.message)
-            btn.closest('.cart-item').remove()
-            document.querySelector('.total-cart').textContent = `(${data.totalQuantity})`
-            document.querySelector('.cart-header').textContent = `(${data.totalQuantity})`
-            document.querySelector('.total-price').textContent = data.totalPrice.toLocaleString('vi-VN') + 'đ'
-            if(data.totalQuantity === 0) {
-                document.querySelector('.empty-text-cart').style.display = 'block'
+            const result = await res.json()
+            if (!res.ok) {
+                throw new Error(result.message)
+            } else {
+                showToast(result.message)
+                btn.closest('.cart-item').remove()
+                document.querySelector('.total-cart').textContent = `(${result.totalQuantity})`
+                document.querySelector('.cart-header').textContent = `(${result.totalQuantity})`
+                document.querySelector('.total-price').textContent = result.totalPrice.toLocaleString('vi-VN') + 'đ'
+                if(result.totalQuantity === 0) {
+                    document.querySelector('.empty-text-cart').style.display = 'block'
+                }
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
+            showToastDanger(error.message)
         }
     })
 })

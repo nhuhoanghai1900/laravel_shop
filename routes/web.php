@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::post('/order', [OrderController::class, 'order'])->name('cart.order')->middleware('throttle:5,1');
 
@@ -13,6 +15,12 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->n
 
 Route::get('/shop/{categoryslug}/{productSlug}', [ProductController::class, 'showProduct']);
 Route::get('/shop/{slug}', [ProductController::class, 'getByCategory']);
+
+
+Route::get('/login', [LoginController::class, 'show'])->name('login.show');
+Route::post('/login', [LoginController::class, 'login'])->name('login.login');
+Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.register');
 
 Route::get('/', fn() => view('home'));
 

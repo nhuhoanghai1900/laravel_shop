@@ -1,0 +1,13 @@
+{
+    "indentSize": 2,
+    "useTabs": false,
+    "wrapLineLength": 120,
+    "wrapAttributes": "force-expand-multiline",
+    "endWithNewline": true,
+    "noPhpSyntaxCheck": false,
+    "sortTailwindcssClasses": true,
+    "enableExperimentalFeatures": true,
+    "normalizeIndent": true,
+    "indentScriptAndStyle": true,
+    "wrapLaravelBladeDirectives": true
+  }

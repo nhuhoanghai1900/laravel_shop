@@ -1,4 +1,5 @@
 import './bootstrap';
-import './toastify';
-import './handleCart';
-import './hendleOrder';
+import './toast/toastify';
+import './hendle/handleCart';
+import './hendle/hendleOrder';
+import './account/register';
