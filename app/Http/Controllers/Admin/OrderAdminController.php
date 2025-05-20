@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -21,7 +22,7 @@ class OrderAdminController extends Controller
                 DB::raw('SHA1(CONCAT(name, email, phone)) as customer_hash')
             )->groupBy('name', 'email', 'phone')
             ->orderByDesc('created_at')->get();
-
+        Debugbar::info($orders->toArray());
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -30,7 +31,7 @@ class OrderAdminController extends Controller
         $orders = Order::with('orderItem.product')
             ->whereRaw("SHA1(CONCAT(name, email, phone)) = ?", [$customer_hash])
             ->orderByDesc('created_at')->get();
-
+        Debugbar::info($customer_hash);
         return view('admin.orders.show', compact('orders'));
     }
 }
