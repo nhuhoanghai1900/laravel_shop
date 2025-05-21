@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 class RegisterController extends Controller
 {
     public function show()
@@ -34,8 +34,8 @@ class RegisterController extends Controller
             ]);
             $validated['password'] = Hash::make($validated['password']);
             User::create($validated);
-            return response()->json(['success' => true, 'message' => 'Đăng ký tài khoản thành công']);
 
+            return response()->json(['success' => true, 'message' => 'Đăng ký tài khoản thành công']);
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,

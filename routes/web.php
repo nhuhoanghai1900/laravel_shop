@@ -16,10 +16,9 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->n
 Route::get('/shop/{categoryslug}/{productSlug}', [ProductController::class, 'showProduct']);
 Route::get('/shop/{slug}', [ProductController::class, 'getByCategory']);
 
-
-Route::get('/login', [LoginController::class, 'show'])->name('login.show');
+Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
-Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
+Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.register');
 
 Route::get('/', fn() => view('home'));
