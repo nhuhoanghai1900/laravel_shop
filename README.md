@@ -2,6 +2,16 @@
 **Website Shop Quần Áo, Phụ Kiện**  
 Giao diện đơn giản, dễ dùng, hỗ trợ các tính năng cơ bản đến nâng cao phục vụ trải nghiệm người dùng cơ bản
 
+## 🧪 Tài khoản dùng thử
+Bạn có thể sử dụng các tài khoản sau để đăng nhập và trải nghiệm:
+### 👑 Admin
+- Email: admin@gmail.com
+- Mật khẩu: 123456
+### 👤 User
+- Email: user@gmail.com
+- Mật khẩu: 123456
+
+
 ## 🚀 Công nghệ sử dụng
 - Framework: Laravel
 - BE: PHP

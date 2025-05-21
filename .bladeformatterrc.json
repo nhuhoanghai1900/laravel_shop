@@ -1,5 +1,5 @@
 {
-    "indentSize": 2,
+    "indentSize": 4,
     "useTabs": false,
     "wrapLineLength": 120,
     "wrapAttributes": "force-expand-multiline",
@@ -9,5 +9,5 @@
     "enableExperimentalFeatures": true,
     "normalizeIndent": true,
     "indentScriptAndStyle": true,
-    "wrapLaravelBladeDirectives": true
+    "wrapLaravelBladeDirectives": false
   }
