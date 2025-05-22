@@ -14,6 +14,7 @@ class OrderController extends Controller
 {
     public function order(Request $request)
     {
+        $user = Auth()->user();
         $cart = session('cart', []);
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -24,64 +25,31 @@ class OrderController extends Controller
             'delivery_to_home' => ['sometimes', 'accepted'],
             'payment_cod' => ['sometimes', 'accepted'],
         ]);
+
+        if (empty($cart)) {
+            return response()->json(['success' => false, 'message' => 'Bạn không có sản phẩm nào trong giỏ hàng!'], 400);
+        }
+
         try {
-            //check spam
-            $currentHash = md5(json_encode(
-                collect($cart)->map(fn($i) => Arr::only($i, ['product_id', 'color', 'size']))
-                    ->sortBy('prroduct_id')
-                    ->values()
-            ));
-            $lastHash = session('last_order_hash');
-            $lastTime = session('last_order_time');
-            if ($lastHash === $currentHash && $lastTime && now()->diffInSeconds($lastTime) < 120) {
-                return response()->json(['success' => false, 'message' => 'Bạn vừa gửi đơn hàng này rồi, vui lòng chờ trong giây lát trước khi gửi lại.'], 429);
-            }
+            DB::transaction(function () use ($validated, $request, $cart, $user) {
+                $validated['user_id'] = $user->id;
+                $validated['delivery_to_home'] = $request->boolean('delivery_to_home');
+                $validated['payment_cod'] = $request->boolean('payment_cod');
+                $order = Order::create($validated);
 
-            if (!empty($cart)) {
-                // Giai đoạn 5: Kiểm tra sản phẩm trong giỏ hàng
-                $productId = collect($cart)->pluck('product_id')->toArray();
-                $products = Product::whereIn('id', $productId)->get()->keyBy('id');
                 foreach ($cart as $item) {
-                    $product = $products[$item['product_id']] ?? null;
-                    if (!$product || $product->price != $item['price']) {
-                        return response()->json(['success' => false, 'message' => 'Giỏ hàng có sản phẩm không hợp lệ. Vui lòng tải lại trang'], 400);
-                    }
-                }
-
-                DB::transaction(function () use ($validated, $request, $cart, $currentHash, &$order) {
-                    $validated['name'] = strtolower($validated['name']);
-                    $validated['email'] = strtolower($validated['email']);
-                    $validated['delivery_to_home'] = $request->boolean('delivery_to_home');
-                    $validated['payment_cod'] = $request->boolean('payment_cod');
-                    $order = Order::create($validated);
-
-                    foreach ($cart as $item) {
-                        OrderItem::create([
-                            'order_id' => $order->id,
-                            'product_id' => $item['product_id'],
-                            'quantity' => $item['quantity'],
-                            'price_each' => $item['price'],
-                            'total_price' => $item['price'] * $item['quantity'],
-                        ]);
-                    }
-                    session([
-                        'last_order_hash' => $currentHash,
-                        'last_order_time' => now(),
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_id' => $item['product_id'],
+                        'quantity' => $item['quantity'],
+                        'price_each' => $item['price'],
+                        'total_price' => $item['price'] * $item['quantity'],
                     ]);
-                    session()->forget('cart');
-                    session()->save();
-                });
-                return response()->json(['success' => true, 'message' => 'Đơn hàng đã được gửi thành công!', 'cart' => []]);
-            } else {
-                return response()->json(['success' => false, 'message' => 'Bạn không có sản phẩm nào trong giỏ hàng!'], 400);
-            }
-
-        } catch (ValidationException $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Đơn hàng thanh toán tất bại',
-                'errors' => $e->errors(),
-            ], 422);
+                }
+                session()->forget('cart');
+                session()->save();
+            });
+            return response()->json(['success' => true, 'message' => 'Đơn hàng đã được gửi thành công!', 'cart' => []]);
         } catch (\Throwable $e) {
             return response()->json([
                 'success' => false,

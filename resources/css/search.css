@@ -5,10 +5,10 @@
 }
 
 .input-search {
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     border-style: none;
-    font-size: 18px;
+    font-size: 12px;
     letter-spacing: 1px;
     outline: none;
     border-radius: 30px;
@@ -19,26 +19,22 @@
 }
 
 .input-search::placeholder {
-    color: rgba(255, 255, 255, .8);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 1rem;
     letter-spacing: 2px;
     font-weight: 100;
 }
 
 .btn-search {
-    height: 30px;
-    width: 30px;
+    width: 33px;
     border-style: none;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 22px;
     outline: none;
-    cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    right: 0px;
+    right: 0;
     color: #ffffff;
     background-color: transparent;
-    pointer-events: painted;
 }
 
 .btn-search:focus~.input-search {

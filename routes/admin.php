@@ -8,5 +8,5 @@ Route::middleware(['auth', 'admin'])
     ->group(function () {
         // dd(Auth::check(), Auth::user());
         Route::get('/orders', [OrderAdminController::class, 'index'])->name('admin.orders.index');
-        Route::get('/orders/{customer_hash}', [OrderAdminController::class, 'show'])->name('admin.orders.show');
+        Route::get('/orders/details', [OrderAdminController::class, 'show'])->name('admin.orders.show');
     });
