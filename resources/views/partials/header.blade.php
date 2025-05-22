@@ -34,7 +34,7 @@
 
         <div class="header-icon d-flex align-items-center gap-3">
             <i class="bi bi-newspaper fs-5"></i>
-            @if (Auth::user()->role === 'admin')
+            @if (Auth::check() && Auth::user()->role === 'admin')
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle d-flex align-items-center gap-1" type="button"
                         id="dropdownMenuButtonAdmin" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,13 +42,13 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButtonAdmin">
                         <li><a class="dropdown-item text-dark" href="{{ route('admin.orders.index') }}">Quản lý</a></li>
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button class="dropdown-item text-dark" type="submit">Đăng xuất</button>
                         </form>
                     </ul>
                 </div>
-            @elseif (Auth::user()->role === 'user')
+            @elseif (Auth::check() && Auth::user()->role === 'user')
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle d-flex align-items-center gap-1" type="button"
                         id="dropdownMenuButtonUser" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,8 +56,8 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButtonUser">
                         <li><a class="dropdown-item text-dark" href="#">Hồ sơ cá nhân</a></li>
-                        <li><a class="dropdown-item text-dark" href="#">Thông tin đơn hàng</a></li>
-                        <form method="POST" action="">
+                        <li><a class="dropdown-item text-dark" href="#">Lịch sử thanh toán</a></li>
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button class="dropdown-item text-dark" type="submit">Đăng xuất</button>
                         </form>

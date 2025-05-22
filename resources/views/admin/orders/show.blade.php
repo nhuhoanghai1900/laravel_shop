@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
-@section('contain')
+@section('title', 'Chi tiết đơn hàng')
+@section('content')
 
     @foreach ($orders as $order)
         <div class="container py-3">

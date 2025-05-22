@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
-@section('contain')
+@section('title', 'Giỏ hàng')
+@section('content')
 
     <div class="header-cart">
         <i class="bi bi-house-fill"></i>
@@ -145,8 +145,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-success text-white">
@@ -156,7 +155,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <i class="bi bi-emoji-kiss"></i> Cảm ơn bạn đã mua hàng tại CATMEN <i class="bi bi-balloon-heart"></i> .<br>
+                        <i class="bi bi-emoji-kiss"></i> Cảm ơn bạn đã mua hàng tại CATMEN <i
+                            class="bi bi-balloon-heart"></i> .<br>
                         <small>Thông tin đơn hàng đã được gửi đi, chúng tôi sẽ sớm liên hệ cho bạn!!!</small>
                         <div class="modal-footer p-2">
                             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Hoàn tất</button>

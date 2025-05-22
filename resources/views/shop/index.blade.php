@@ -1,6 +1,6 @@
 @extends('layouts.app')
+@section('content')
 
-@section('contain')
     <div class="header-products">
         <div>
             <i class="bi bi-house-fill"></i>
@@ -23,4 +23,5 @@
             </div>
         @endforeach
     </section>
+
 @endsection

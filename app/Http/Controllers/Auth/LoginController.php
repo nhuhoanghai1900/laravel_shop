@@ -28,6 +28,7 @@ class LoginController extends Controller
                 ], 401);
             }
             $user = Auth::user();
+            $request->session()->regenerate();
             $redirectRoute = $user->role === 'admin' ? 'admin/orders' : '/';
             return response()->json([
                 'success' => true,

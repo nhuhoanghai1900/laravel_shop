@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('contain')
+@section('title', 'Quản lý đơn hàng')
+@section('content')
 
     <div class="px-4 py-5">
         <h2 class="mb-4 pb-2 border-bottom border-2 fw-bold text-danger"><i class="bi bi-boxes"></i> Danh sách đơn hàng

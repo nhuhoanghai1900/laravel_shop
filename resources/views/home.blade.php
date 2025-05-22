@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Trang chủ')
+@section('title', 'CATMEN HOME')
 
-@section('contain')
+@section('content')
     <section class="section-banner mx-auto p-4 d-flex justify-content-center">
         <img src="/img/banner.jpg" alt="banner">
     </section>
