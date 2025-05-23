@@ -88,14 +88,26 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Tên tài khoản</label>
-                                <input id="name" name="name" type="text" class="form-control" autocomplete="name" required
-                                    minlength="6" maxlength="255" value="{{ $user->name }}" disabled>
+                                @if($user)
+                                    <input id="name" name="name" type="text" class="form-control" autocomplete="name" required
+                                        minlength="6" maxlength="255" value="{{ $user->name }}" disabled>
+                                @else
+                                    <input id="name" name="name" type="text" class="form-control" autocomplete="name" required
+                                        minlength="6" maxlength="255" value="" disabled>
+                                @endif
+
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input id="email" name="email" type="email" class="form-control" autocomplete="email"
-                                    required maxlength="255" value="{{ $user->email }}" disabled>
+                                @if($user)
+                                    <input id="email" name="email" type="email" class="form-control" autocomplete="email"
+                                        required maxlength="255" value="{{ $user->email }}" disabled>
+                                @else
+                                    <input id="email" name="email" type="email" class="form-control" autocomplete="email"
+                                        required maxlength="255" value="" disabled>
+                                @endif
+
                             </div>
 
                             <div class="mb-3">

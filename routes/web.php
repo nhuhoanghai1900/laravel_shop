@@ -10,9 +10,11 @@ use App\Http\Controllers\Auth\LogoutController;
 
 Route::post('/order', [OrderController::class, 'order'])->name('cart.order')->middleware('auth', 'throttle:5,1');
 
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-Route::post('/cart/add', [CartController::class, 'addCart'])->name('cart.add');
-Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/', [CartController::class, 'store'])->name('cart.store');
+    Route::delete('/', [CartController::class, 'destroy'])->name('cart.destroy');
+});
 
 Route::get('/shop/details/{product:slug}', [ProductController::class, 'productDetails'])->name('shop.details');
 Route::get('/shop/{category:slug}', [ProductController::class, 'showProducts'])->name('shop.show');

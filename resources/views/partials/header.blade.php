@@ -79,7 +79,7 @@
             @php
                 $totalQuantity = array_sum(array_column($cart, 'quantity'));
             @endphp
-            <a href="{{ route('cart.show') }}" class="position-relative d-flex align-items-center">
+            <a href="{{ route('cart.index') }}" class="position-relative d-flex align-items-center">
                 <i class="bi bi-cart2 fs-5"></i>
                 <span class="cart-header badge bg-danger ms-1">({{ $totalQuantity }})</span>
             </a>

@@ -14,6 +14,7 @@ class OrderAdminController extends Controller
     {
         $users = User::withCount('orders')
             ->with('latestOrder')
+            ->having('orders_count', '>', 0)
             ->get();
         return view('admin.orders.index', compact('users'));
     }

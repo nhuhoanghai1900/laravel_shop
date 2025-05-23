@@ -23,7 +23,11 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->orders_count }}</td>
-                            <td>{{ \Carbon\Carbon::parse($item->latestOrder->created_at)->format('d/m/Y H:i:s') }}</td>
+                            @if ($item->latestOrder)
+                                <td>{{ \Carbon\Carbon::parse($item->latestOrder->created_at)->format('d/m/Y H:i:s') }}</td>
+                            @else
+                                <td>Chưa có đơn hàng</td>
+                            @endif
                             <td><a href="{{ route('admin.orders.show', ['userId' => $item->id]) }}"
                                     class="btn btn-sm btn-success" target="_blank"> Chi tiết</a></td>
                         </tr>

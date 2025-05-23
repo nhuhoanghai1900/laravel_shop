@@ -14,9 +14,10 @@
             <input type="text" class="input-search" placeholder="Lựa chọn trong tay bạn...">
         </div>
     </div>
-    <form id="addFormCart">
+    <form id="addFormCart" action="">
+        @csrf
         <section class="container mx-auto product-details">
-            <img src="{{ $product->img }}" alt="{{ $product->slug }}">
+            <img src="{{ $product->img }}" alt="">
             <div class="product-des">
                 <h5 class="fw-bold">{{ $product->name }}</h5>
                 <h5 class="fs-6 text-danger">{{ number_format($product->price, 0, ',', '.')}} đ</h5>
@@ -49,7 +50,8 @@
                         <option value=3>3</option>
                         <option value=4>4</option>
                     </select>
-                    <button type="submit" class="add-to-cart" data-id='{{ $product->id }}'>THÊM VÀO GIỎ HÀNG</button>
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                    <button type="submit" class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
                 </div>
                 <small class="text-dark fst-italic">Mã sản phẩm: {{ $product->sku }}</small> <br />
                 <p class="full-description text-dark text-justify mt-2">
