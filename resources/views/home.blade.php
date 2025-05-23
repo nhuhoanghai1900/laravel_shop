@@ -6,10 +6,14 @@
         <img src="/img/banner.jpg" alt="banner">
     </section>
     <section class="container mx-auto section-categories mb-5">
-        @foreach ($quanAoCategories as $cat)
+        @foreach ($clothesCategories as $category)
             <div class="categories-item">
-                <a href="/shop/{{ $cat->slug }}?category_id={{ $cat->id }}"><img src='{{ $cat->img }}' alt="banner"></a>
-                <span><a href="/shop/{{ $cat->slug }}">{{ $cat->des }}</a></span>
+                <a href="{{ route('shop.show', ['category' => $category->slug]) }}">
+                    <img src='{{ $category->img }}' alt="banner">
+                </a>
+                <span><a href="{{ route('shop.show', ['category' => $category->slug]) }}">
+                        {{ $category->des }}
+                    </a></span>
             </div>
         @endforeach
     </section>

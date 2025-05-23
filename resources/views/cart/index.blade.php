@@ -84,31 +84,29 @@
                     <div class="card-header"><strong><i class="bi bi-info-circle"></i> Thông tin người nhận hàng</strong>
                     </div>
                     <div class="card-body">
-                        <small>(*) Thông tin bắt buộc</small>
                         <form id="orderPayment">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Họ Tên *</label>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="Nguyễn Văn A"
-                                    autocomplete="name" required minlength="6" maxlength="255" value="Nguyễn Văn A">
+                                <label for="name" class="form-label">Tên tài khoản</label>
+                                <input id="name" name="name" type="text" class="form-control" autocomplete="name" required
+                                    minlength="6" maxlength="255" value="{{ $user->name }}" disabled>
                             </div>
 
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Số Điện Thoại *</label>
+                                <label for="email" class="form-label">Email</label>
+                                <input id="email" name="email" type="email" class="form-control" autocomplete="email"
+                                    required maxlength="255" value="{{ $user->email }}" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Số Điện Thoại (*)</label>
                                 <input id="phone" name="phone" type="tel" class="form-control" placeholder="0901234567"
                                     autocomplete="tel" required pattern="^0[0-9]{9,10}$"
                                     title="Số điện thoại bắt đầu bằng 0 và có 10-11 chữ số" value="0901234567">
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email *</label>
-                                <input id="email" name="email" type="email" class="form-control"
-                                    placeholder="nguyenvanb@gmail.com" autocomplete="email" required maxlength="255"
-                                    value="nguyenvanb@gmail.com">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Địa Chỉ *</label>
+                                <label for="address" class="form-label">Địa Chỉ (*)</label>
                                 <input id="address" name="address" type="text" class="form-control"
                                     placeholder="Long Phước, Long Thành, Đồng Nai" autocomplete="street-address" required
                                     maxlength="255" value="Long Phước, Long Thành, Đồng Nai">
@@ -118,7 +116,7 @@
                                 <input id="receiveAtHome" name="delivery_to_home" type="checkbox" class="form-check-input"
                                     checked>
                                 <label class="form-check-label" for="receiveAtHome">
-                                    Xác nhận nhận hàng tại nhà <i class="bi bi-house-fill"></i>
+                                    Xác nhận địa chỉ nhận hàng
                                 </label>
                             </div>
 

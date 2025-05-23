@@ -20,12 +20,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('*', function ($view) {
-            $quanAoCategories = Category::where('type', 'quan-ao')->get();
-            $phuKienCategories = Category::where('type', 'phu-kien')->get();
+            $clothesCategories = Category::where('type', 'quan-ao')->get();
+            $accessoryCategories = Category::where('type', 'phu-kien')->get();
             $cart = session('cart', []);
             $view->with([
-                'quanAoCategories' => $quanAoCategories,
-                'phuKienCategories' => $phuKienCategories,
+                'clothesCategories' => $clothesCategories,
+                'accessoryCategories' => $accessoryCategories,
                 'cart' => $cart
             ]);
         });

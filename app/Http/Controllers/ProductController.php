@@ -1,34 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function getByCategory($slug, Request $request)
+    public function showProducts(Category $category)
     {
-        // Lấy giá trị của categoryId từ query string
-        $categoryId = $request->query('category_id');
-        if (!$categoryId) {
-            return response()->json(['error' => 'Category ID is required'], 400);
-        }
-
-        $category = Category::find($categoryId);
-        if (!$category) {
-            return response()->json(['error' => 'Category not found'], 404);
-        }
-
-        $categoryName = $category->name;
-        $products = $category->products;
-        return view('shop.index', compact('products', 'categoryName', 'slug'));
+        $products = Product::where('category_id', $category->id)->get();
+        return view('shop.index', compact('products', 'category'));
     }
 
-    public function showProduct($categoryslug, $productSlug)
+    public function productDetails(Product $product)
     {
-        $product = Product::with('category')->where('slug', $productSlug)->first();
-        $product = Product::with('description')->find($product->id);
+        $product = Product::with('category')
+            ->where('slug', $product->slug)->firstOrFail();
+            Debugbar::info($product->toArray());
         return view('shop.details', compact('product'));
     }
 }

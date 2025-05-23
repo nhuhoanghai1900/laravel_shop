@@ -13,9 +13,7 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('name');
             $table->string('phone');
-            $table->string('email');
             $table->text('address');
             $table->text('note')->nullable();
             $table->boolean('payment_cod')->default(true); // Thanh toán khi nhận hàng

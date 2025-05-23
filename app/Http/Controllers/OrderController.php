@@ -17,9 +17,9 @@ class OrderController extends Controller
         $user = Auth()->user();
         $cart = session('cart', []);
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255'],
+            // 'email' => ['required', 'email:rfc,dns'],
             'phone' => ['required', 'regex:/^0[0-9]{9}$/'],
-            'email' => ['required', 'email:rfc,dns'],
             'address' => ['required', 'string', 'max:255'],
             'note' => ['nullable', 'string', 'max:300'],
             'delivery_to_home' => ['sometimes', 'accepted'],

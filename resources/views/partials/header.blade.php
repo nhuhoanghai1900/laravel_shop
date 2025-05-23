@@ -12,8 +12,8 @@
                             class="overlay"></span></a>
                 </div>
                 <div class="dropdown-content">
-                    @foreach ($quanAoCategories as $cat)
-                        <a href="/shop/{{ $cat->slug }}?category_id={{ $cat->id }}">{{ $cat->name }}</a>
+                    @foreach ($clothesCategories as $category)
+                        <a href="{{ route('shop.show', ['category' => $category->slug]) }}">{{ $category->name }}</a>
                     @endforeach
                 </div>
             </div>
@@ -25,8 +25,8 @@
                     </a>
                 </div>
                 <div class="dropdown-content">
-                    @foreach ($phuKienCategories as $cat)
-                        <a href="/shop/{{ $cat->slug }}?category_id={{ $cat->id }}">{{ $cat->name }}</a>
+                    @foreach ($accessoryCategories as $category)
+                        <a href="{{ route('shop.show', ['category' => $category->slug]) }}">{{ $category->name }}</a>
                     @endforeach
                 </div>
             </div>

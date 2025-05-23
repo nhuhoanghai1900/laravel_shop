@@ -14,8 +14,8 @@ Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::post('/cart/add', [CartController::class, 'addCart'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
-Route::get('/shop/{categoryslug}/{productSlug}', [ProductController::class, 'showProduct'])->name('shop.show');
-Route::get('/shop/{slug}', [ProductController::class, 'getByCategory']);
+Route::get('/shop/details/{product:slug}', [ProductController::class, 'productDetails'])->name('shop.details');
+Route::get('/shop/{category:slug}', [ProductController::class, 'showProducts'])->name('shop.show');
 
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
