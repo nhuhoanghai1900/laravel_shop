@@ -10,7 +10,7 @@
             <table class="table table-bordered table-hover align-middle text-center mb-0">
                 <thead class="table-dark">
                     <tr>
-                        <th>Chủs tài khoản</th>
+                        <th>Chủ tài khoản</th>
                         <th>Email</th>
                         <th>Số lần thanh toán</th>
                         <th>Thanh toán gần nhất</th>
@@ -23,9 +23,9 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->orders_count }}</td>
-                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i:s') }}</td>
-                            <td><a href="{{ route('admin.orders.show') }}" class="btn btn-sm btn-success" target="_blank"> Chi
-                                    tiết</a></td>
+                            <td>{{ \Carbon\Carbon::parse($item->latestOrder->created_at)->format('d/m/Y H:i:s') }}</td>
+                            <td><a href="{{ route('admin.orders.show', ['userId' => $item->id]) }}"
+                                    class="btn btn-sm btn-success" target="_blank"> Chi tiết</a></td>
                         </tr>
                     @empty
                         <tr>

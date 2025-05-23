@@ -2,7 +2,7 @@
 @section('title', 'Chi tiết đơn hàng')
 @section('content')
 
-    @foreach ($orders as $order)
+    @foreach ($user->orders as $order)
         <div class="container py-3">
             <!-- Header đơn hàng -->
             <div class="card mb-4">
@@ -12,11 +12,11 @@
                 <div class="card-body">
                     <!-- Thông tin khách -->
                     <div class="row mb-2">
-                        <div class="col-md-6"><strong>Tên khách:</strong> {{ $order->name }}</div>
+                        <div class="col-md-6"><strong>Khách hàng:</strong> {{ $user->name }}</div>
                         <div class="col-md-6"><strong>SĐT:</strong> {{ $order->phone }}</div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-6"><strong>Email:</strong> {{ $order->email }}</div>
+                        <div class="col-md-6"><strong>Email:</strong> {{ $user->email }}</div>
                         <div class="col-md-6"><strong>Địa chỉ:</strong> {{ $order->address }}</div>
                     </div>
                     <div class="row mb-2">
@@ -56,7 +56,7 @@
                         </thead>
                         <tbody>
                             @php $total = 0; @endphp
-                            @foreach ($order->orderItem as $item)
+                            @foreach ($order->orderItems as $item)
                                 @php $total += $item->total_price; @endphp
                                 <tr>
                                     <td class="text-center" style="width: 100px;">

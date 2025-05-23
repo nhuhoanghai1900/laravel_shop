@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $fillable = ['user_id', 'name', 'phone', 'email', 'address', 'note', 'status', 'delivery_to_home', 'payment_cod'];
 
-    public function orderItem()
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
